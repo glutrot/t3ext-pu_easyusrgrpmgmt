@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for module &quot;web_txpueasyusrgrpmgmt&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="title">Frontend User Administration</label>
+			<label index="function1">Frontend User Administration</label>
+			<label index="user_group_matrix">Frontend-User-Group-Matrix</label>
+			<label index="update_only">Update only selected user(s). Attention: If no update-checkbox has been selected, all user-group-relations will be updated with the current settings.</label>
+			<label index="update_only_img">mod1/lib/update.gif</label>
+			<label index="remove_from_groups">Remove user(s) from selected group(s)</label>
+			<label index="remove_from_groups_img">mod1/lib/remove.gif</label>
+			<label index="no_feusers_groups">There are no frontend user(s)/group(s) in this page. &lt;br/&gt; At least one user and one group are needed by the module.</label>
+			<label index="submit_button">Update</label>
+			<label index="reset_button">Reset</label>
+			<label index="create_link_fe_users">Create new frontend user in this page</label>
+			<label index="create_link_fe_groups">Create new frontend group in this page</label>
+			<label index="create_link_img">mod1/lib/create.gif</label>
+			<label index="edit_link_fe_users">Edit frontend user:</label>
+			<label index="edit_link_fe_groups">Edit frontend group:</label>
+			<label index="edit_link_img">mod1/lib/edit.gif</label>
+			<label index="count_datarows_fe_users">Frontend users in this page:</label>
+			<label index="count_datarows_fe_groups">Frontend groups in this page:</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="title">Frontend User Administration</label>
+			<label index="function1">Frontend User Administration</label>
+			<label index="user_group_matrix">Frontend-Benutzer-Benutzergruppen-Matrix</label>
+			<label index="update_only">Update nur der ausgewählten Benutzer. Achtung: Wenn keine Update-Checkboxen ausgewählt wurden, werden alle Benutzer-Gruppen-Beziehungen mit den aktuellen Einstellungen gespeichert.</label>
+			<label index="update_only_img">mod1/lib/update.gif</label>
+			<label index="remove_from_groups">Benutzer aus den ausgewählten Benutzergruppen entfernen</label>
+			<label index="remove_from_groups_img">mod1/lib/remove.gif</label>
+			<label index="no_feusers_groups">In dieser Seite befinden sich keine Frontend Benutzer/Benutzergruppen. &lt;br/&gt; Das Modul benötigt mindestens einen angelegten Frontend Benutzer und eine Benutzergruppe.</label>
+			<label index="submit_button">Update</label>
+			<label index="reset_button">Zurücksetzen</label>
+			<label index="create_link_fe_users">Neuen Frontend Benutzer in dieser Seite erstellen</label>
+			<label index="create_link_fe_groups">Neue Frontend Benutzergruppe in dieser Seite erstellen</label>
+			<label index="create_link_img">mod1/lib/create.gif</label>
+			<label index="edit_link_fe_users">Frontend Benutzer bearbeiten:</label>
+			<label index="edit_link_fe_groups">Frontend Benutzergruppe bearbeiten:</label>
+			<label index="edit_link_img">mod1/lib/edit.gif</label>
+			<label index="count_datarows_fe_users">Frontend Benutzer in dieser Seite:</label>
+			<label index="count_datarows_fe_groups">Frontend Benutzergruppe in dieser Seite:</label>
+		</languageKey>
+	</data>
+</T3locallang>
