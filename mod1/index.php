@@ -271,24 +271,24 @@ class tx_pueasyusrgrpmgmt_module1 extends t3lib_SCbase {
 	
 	function updateUserGroupAssignment($data, $updonly, $pid=0) {
 		if(is_array($data)) {
-            if (!is_array($updonly)) {
-                return true;
-            }
-            
+			if (!is_array($updonly)) {
+				return true;
+			}
+
 			foreach ($data as $key => $value) {
 				if(!in_array($key, $updonly) && !empty($updonly))
 					continue;
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_users','uid="'.$key.'" AND pid="'.$pid.'"');
 				if(count($res) == 1) {
 					$fe_groups_uids = array();
-                    if (is_array($value)) {
-                        foreach($value as $v) {
-                            $res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_groups','uid="'.$v.'" AND pid="'.$pid.'"');
-                            if(count($res) == 1) {
-                                $fe_groups_uids[] = $v;
-                            }
-                        }
-                    }
+					if (is_array($value)) {
+						foreach($value as $v) {
+							$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_groups','uid="'.$v.'" AND pid="'.$pid.'"');
+							if(count($res) == 1) {
+								$fe_groups_uids[] = $v;
+							}
+						}
+					}
 					$fe_groups_uids = array_unique($fe_groups_uids);
 					$updateArray = array('usergroup' => implode(',',$fe_groups_uids));
 					$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery('fe_users', 'uid="'.$key.'" AND pid="'.$pid.'"', $updateArray);
