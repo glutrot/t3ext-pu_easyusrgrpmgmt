@@ -33,9 +33,7 @@
 unset($MCONF);
 require ("conf.php");
 require ($BACK_PATH."init.php");
-require ($BACK_PATH."template.php");
 $LANG->includeLLFile("EXT:pu_easyusrgrpmgmt/mod1/locallang.xml");
-require_once (PATH_t3lib."class.t3lib_scbase.php");
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
 	// DEFAULT initialization of a module [END]
 
@@ -151,7 +149,7 @@ class tx_pueasyusrgrpmgmt_module1 extends t3lib_SCbase {
 				</script>
 			';
 
-			$headerSection = $this->doc->getHeader("pages",$this->pageinfo,$this->pageinfo["_thePath"])."<br />".$LANG->sL("LLL:EXT:lang/locallang_core.xml:labels.path").": ".t3lib_div::fixed_lgd_pre($this->pageinfo["_thePath"],50);
+			$headerSection = $this->doc->getHeader("pages",$this->pageinfo,$this->pageinfo["_thePath"])."<br />".$LANG->sL("LLL:EXT:lang/locallang_core.xml:labels.path").": ".t3lib_div::fixed_lgd_cs($this->pageinfo["_thePath"],-50);
 
 			$this->content.=$this->doc->startPage($LANG->getLL("title"));
 			$this->content.=$this->doc->header($LANG->getLL("title"));
@@ -196,7 +194,7 @@ class tx_pueasyusrgrpmgmt_module1 extends t3lib_SCbase {
 		global $LANG;
 		switch((string)$this->MOD_SETTINGS["function"])	{
 			case 1:
-				if($_POST['SET']['function'] == 1 && $_POST['SET']['submit'] == $LANG->getLL("submit_button")) {
+				if($_POST['SET']['submit'] == $LANG->getLL("submit_button")) {
 					$this->updateUserGroupAssignment($_POST['assign'], $_POST['update_only'], $this->id);
 				}
 				$fe_users = $this->getUserGroupData('fe_users','uid,username,name,usergroup',$this->id);
@@ -273,18 +271,24 @@ class tx_pueasyusrgrpmgmt_module1 extends t3lib_SCbase {
 	
 	function updateUserGroupAssignment($data, $updonly, $pid=0) {
 		if(is_array($data)) {
+            if (!is_array($updonly)) {
+                return true;
+            }
+            
 			foreach ($data as $key => $value) {
 				if(!in_array($key, $updonly) && !empty($updonly))
 					continue;
 				$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_users','uid="'.$key.'" AND pid="'.$pid.'"');
 				if(count($res) == 1) {
 					$fe_groups_uids = array();
-					foreach($value as $v) {
-						$res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_groups','uid="'.$v.'" AND pid="'.$pid.'"');
-						if(count($res) == 1) {
-							$fe_groups_uids[] = $v;
-						}
-					}
+                    if (is_array($value)) {
+                        foreach($value as $v) {
+                            $res = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid','fe_groups','uid="'.$v.'" AND pid="'.$pid.'"');
+                            if(count($res) == 1) {
+                                $fe_groups_uids[] = $v;
+                            }
+                        }
+                    }
 					$fe_groups_uids = array_unique($fe_groups_uids);
 					$updateArray = array('usergroup' => implode(',',$fe_groups_uids));
 					$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery('fe_users', 'uid="'.$key.'" AND pid="'.$pid.'"', $updateArray);

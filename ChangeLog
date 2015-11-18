@@ -1,5 +1,9 @@
 (add new changes on top of this file)
 
+15-11-18 Daniel Neugebauer <dneuge@glutrot.de>
+
+	* compatibility with TYPO3 6.2, dropping support for all earlier versions
+
 07-04-25 Patric Ueschner  <news4patric@freenet.de>
 
 	* Initial release
